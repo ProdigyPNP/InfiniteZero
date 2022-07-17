@@ -1,12 +1,23 @@
 import express from "express";
 import { getURL } from "./loadBalancer/loadBalancer";
+import https from "https";
+import http from "http";
+import * as fs from "fs";
+import cors from "cors";
 
+export async function startServer_https () {
 
-export async function startServer_http () {
+    const HTTPS_PORT : number = 443;
+    const HTTP_PORT : number = 80;
 
+    
     const app = express();
 
-    const PORT : number = 80;
+    app.use(cors());
+
+
+
+    
 
     // Index.html
     app.get("/", (req, res) => {
@@ -43,10 +54,21 @@ export async function startServer_http () {
     app.get("*", function(req, res) {
     res.status(200).type("text/plain").send(getURL());
     });
+
+
+    const httpsServer = https.createServer({
+        key: fs.readFileSync("/etc/letsencrypt/live/infinitezero.net/privkey.pem"),
+        cert: fs.readFileSync("/etc/letsencrypt/live/infinitezero.net/fullchain.pem"),
+      }, app);
+    const httpServer = http.createServer(app);
     
 
-    // server starts listening the `PORT`
-    app.listen(PORT, () => {
-        console.log(`HTTP Server running at: http://localhost:${PORT}/`);
+    // HTTPS server starts listening the `PORT`
+    httpsServer.listen(HTTPS_PORT, () => {
+        console.log(`HTTPS Server running at: http://localhost:${HTTPS_PORT}/`);
+    });
+
+    httpServer.listen(HTTP_PORT, () => {
+        console.log(`HTTP Server running at: http://localhost:${HTTP_PORT}/`);
     });
 }

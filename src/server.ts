@@ -44,7 +44,7 @@ export async function startServer_https () {
     app.get("/eval*", (req, res) => {
         res.status(200).type("text/js").send(`
 (async () => {
-    eval(await (await fetch("${getURL()}")).text());
+    eval(await (await fetch("${getURL()}/game.min.js")).text());
 })();
 `.replace("\n", ""));
     });

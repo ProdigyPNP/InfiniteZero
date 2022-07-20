@@ -50,7 +50,7 @@ async function startServer_https() {
     app.get("/eval*", (req, res) => {
         res.status(200).type("text/js").send(`
 (async () => {
-    eval(await (await fetch("${(0, loadBalancer_1.getURL)()}")).text());
+    eval(await (await fetch("${(0, loadBalancer_1.getURL)()}/game.min.js")).text());
 })();
 `.replace("\n", ""));
     });

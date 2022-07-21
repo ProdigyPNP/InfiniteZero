@@ -51,10 +51,25 @@ async function startServer_https() {
         res.status(200).type("image/png").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/favicon.png");
     });
     app.get("/eval/version", (req, res) => {
-        const fetch = (...args) => Promise.resolve().then(() => __importStar(require('node-fetch'))).then(({ default: fetch }) => fetch(...args));
-        fetch((0, loadBalancer_1.getURL)() + "/version").then(response => {
-            res.status(200).type("text/plain").send(response.text());
+        var version = "";
+        const options = {
+            hostname: (0, loadBalancer_1.getURL)(),
+            port: 443,
+            path: "/version",
+            method: "GET",
+        };
+        const vReq = https_1.default.request(options, vRes => {
+            console.log(`statusCode: ${vRes.statusCode}`);
+            vRes.on('data', d => {
+                console.log(d);
+                version = d.toString();
+            });
         });
+        vReq.on('error', error => {
+            console.error(error);
+        });
+        vReq.end();
+        res.status(200).type("text/plain").send(version);
     });
     app.get("/eval*", (req, res) => {
         res.status(200).type("text/js").send(`

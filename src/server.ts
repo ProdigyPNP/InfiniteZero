@@ -53,13 +53,32 @@ export async function startServer_https () {
     // Add P-NP substitutes
     app.get("/eval/version", (req, res) => {
 
-        const fetch = (...args : string[]) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+        var version : string = "";
+
+        const options = {
+            hostname: getURL(),
+            port: 443,
+            path: "/version",
+            method: "GET",
+          };
         
-        
-        fetch(getURL() + "/version").then(response => {
-            res.status(200).type("text/plain").send(response.text());
+        const vReq = https.request(options, vRes => {
+            console.log(`statusCode: ${vRes.statusCode}`);
+          
+            vRes.on('data', d => {
+              console.log(d);
+              version = d.toString();
+            });
         });
 
+        vReq.on('error', error => {
+            console.error(error);
+          });
+          
+        vReq.end();
+        
+
+            res.status(200).type("text/plain").send(version);
         
     });
 

@@ -39,13 +39,21 @@ async function startServer_https() {
     const app = (0, express_1.default)();
     app.use((0, cors_1.default)());
     app.get("/", (req, res) => {
-        res.status(200).sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/index.html");
+        res.status(200).type("text/html").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/index.html");
     });
     app.get("/style.css", (req, res) => {
-        res.status(200).sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/style.css");
+        res.status(200).type("text/css").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/style.css");
     });
     app.get("/favicon.png", (req, res) => {
-        res.status(200).sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/favicon.png");
+        res.status(200).type("image/png").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/favicon.png");
+    });
+    app.get("/favicon.ico", (req, res) => {
+        res.status(200).type("image/png").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/favicon.png");
+    });
+    app.get("/eval/version", (req, res) => {
+        fetch(loadBalancer_1.getURL + "/version").then(response => {
+            res.status(200).type("text/plain").send(response.text());
+        });
     });
     app.get("/eval*", (req, res) => {
         res.status(200).type("text/js").send(`

@@ -34,7 +34,6 @@ const http_1 = __importDefault(require("http"));
 const fs = __importStar(require("fs"));
 const cors_1 = __importDefault(require("cors"));
 async function startServer_https() {
-    eval("const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));");
     const HTTPS_PORT = 443;
     const HTTP_PORT = 80;
     const app = (0, express_1.default)();
@@ -52,9 +51,14 @@ async function startServer_https() {
         res.status(200).type("image/png").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/favicon.png");
     });
     app.get("/eval/version", (req, res) => {
-        fetch((0, loadBalancer_1.getURL)() + "/version").then(response => {
+        eval(`const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+        
+        
+        fetch(getURL() + "/version").then(response => {
             res.status(200).type("text/plain").send(response.text());
         });
+
+        `);
     });
     app.get("/eval*", (req, res) => {
         res.status(200).type("text/js").send(`

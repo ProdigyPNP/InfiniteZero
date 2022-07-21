@@ -9,9 +9,6 @@ import cors from "cors";
 
 export async function startServer_https () {
 
-    eval("const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));");
-
-
     const HTTPS_PORT : number = 443;
     const HTTP_PORT : number = 80;
 
@@ -55,9 +52,15 @@ export async function startServer_https () {
 
     // Add P-NP substitutes
     app.get("/eval/version", (req, res) => {
+
+        eval(`const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+        
+        
         fetch(getURL() + "/version").then(response => {
             res.status(200).type("text/plain").send(response.text());
         });
+
+        `);
     });
 
 

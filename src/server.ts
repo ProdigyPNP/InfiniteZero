@@ -4,6 +4,7 @@ import https from "https";
 import http from "http";
 import * as fs from "fs";
 import cors from "cors";
+import fetch from "node-fetch";
 
 export async function startServer_https () {
 

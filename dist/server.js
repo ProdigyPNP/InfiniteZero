@@ -33,6 +33,7 @@ const https_1 = __importDefault(require("https"));
 const http_1 = __importDefault(require("http"));
 const fs = __importStar(require("fs"));
 const cors_1 = __importDefault(require("cors"));
+const node_fetch_1 = __importDefault(require("node-fetch"));
 async function startServer_https() {
     const HTTPS_PORT = 443;
     const HTTP_PORT = 80;
@@ -51,7 +52,7 @@ async function startServer_https() {
         res.status(200).type("image/png").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/favicon.png");
     });
     app.get("/eval/version", (req, res) => {
-        fetch(loadBalancer_1.getURL + "/version").then(response => {
+        (0, node_fetch_1.default)(loadBalancer_1.getURL + "/version").then(response => {
             res.status(200).type("text/plain").send(response.text());
         });
     });

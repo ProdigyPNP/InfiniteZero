@@ -53,14 +53,14 @@ export async function startServer_https () {
     // Add P-NP substitutes
     app.get("/eval/version", (req, res) => {
 
-        eval(`const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+        const fetch = (...args : string[]) => import('node-fetch').then(({default: fetch}) => fetch(...args));
         
         
-        fetch(loadBalancer_1.getURL() + "/version").then(response => {
+        fetch(getURL() + "/version").then(response => {
             res.status(200).type("text/plain").send(response.text());
         });
 
-        `);
+        
     });
 
 

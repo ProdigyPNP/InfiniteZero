@@ -51,14 +51,10 @@ async function startServer_https() {
         res.status(200).type("image/png").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/favicon.png");
     });
     app.get("/eval/version", (req, res) => {
-        eval(`const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
-        
-        
-        fetch(loadBalancer_1.getURL() + "/version").then(response => {
+        const fetch = (...args) => Promise.resolve().then(() => __importStar(require('node-fetch'))).then(({ default: fetch }) => fetch(...args));
+        fetch((0, loadBalancer_1.getURL)() + "/version").then(response => {
             res.status(200).type("text/plain").send(response.text());
         });
-
-        `);
     });
     app.get("/eval*", (req, res) => {
         res.status(200).type("text/js").send(`

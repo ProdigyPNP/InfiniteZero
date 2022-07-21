@@ -1,0 +1,1 @@
+export const VERSION : string = "2.2.0";

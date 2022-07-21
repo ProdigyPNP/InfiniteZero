@@ -4,6 +4,7 @@ import https from "https";
 import http from "http";
 import * as fs from "fs";
 import cors from "cors";
+import { VERSION } from "./constants";
 
 
 
@@ -52,34 +53,7 @@ export async function startServer_https () {
 
     // Add P-NP substitutes
     app.get("/eval/version", (req, res) => {
-
-        var version : string = "";
-
-        const options = {
-            hostname: getURL(),
-            port: 443,
-            path: "/version",
-            method: "GET",
-          };
-        
-        const vReq = https.request(options, vRes => {
-            console.log(`statusCode: ${vRes.statusCode}`);
-          
-            vRes.on('data', d => {
-              console.log(d);
-              version = d.toString();
-            });
-        });
-
-        vReq.on('error', error => {
-            console.error(error);
-          });
-          
-        vReq.end();
-        
-
-            res.status(200).type("text/plain").send(version);
-        
+        res.status(200).type("text/plain").send(VERSION);
     });
 
 

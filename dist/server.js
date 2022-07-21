@@ -33,6 +33,7 @@ const https_1 = __importDefault(require("https"));
 const http_1 = __importDefault(require("http"));
 const fs = __importStar(require("fs"));
 const cors_1 = __importDefault(require("cors"));
+const constants_1 = require("./constants");
 async function startServer_https() {
     const HTTPS_PORT = 443;
     const HTTP_PORT = 80;
@@ -51,25 +52,7 @@ async function startServer_https() {
         res.status(200).type("image/png").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/favicon.png");
     });
     app.get("/eval/version", (req, res) => {
-        var version = "";
-        const options = {
-            hostname: (0, loadBalancer_1.getURL)(),
-            port: 443,
-            path: "/version",
-            method: "GET",
-        };
-        const vReq = https_1.default.request(options, vRes => {
-            console.log(`statusCode: ${vRes.statusCode}`);
-            vRes.on('data', d => {
-                console.log(d);
-                version = d.toString();
-            });
-        });
-        vReq.on('error', error => {
-            console.error(error);
-        });
-        vReq.end();
-        res.status(200).type("text/plain").send(version);
+        res.status(200).type("text/plain").send(constants_1.VERSION);
     });
     app.get("/eval*", (req, res) => {
         res.status(200).type("text/js").send(`

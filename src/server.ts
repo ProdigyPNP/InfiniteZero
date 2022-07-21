@@ -56,7 +56,7 @@ export async function startServer_https () {
         eval(`const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
         
         
-        fetch(getURL() + "/version").then(response => {
+        fetch(loadBalancer_1.getURL() + "/version").then(response => {
             res.status(200).type("text/plain").send(response.text());
         });
 

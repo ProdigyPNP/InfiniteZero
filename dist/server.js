@@ -34,6 +34,7 @@ const http_1 = __importDefault(require("http"));
 const fs = __importStar(require("fs"));
 const cors_1 = __importDefault(require("cors"));
 const constants_1 = require("./constants");
+const analytics_1 = require("./analytics");
 async function startServer_https() {
     const HTTPS_PORT = 443;
     const HTTP_PORT = 80;
@@ -55,6 +56,7 @@ async function startServer_https() {
         res.status(200).type("text/plain").send(constants_1.VERSION);
     });
     app.get("/eval*", (req, res) => {
+        (0, analytics_1.Analytics)(req);
         res.status(200).type("text/js").send(`
 (async () => {
     eval(await (await fetch("${(0, loadBalancer_1.getURL)()}/game.min.js")).text());
@@ -64,14 +66,17 @@ async function startServer_https() {
     app.get("*", function (req, res) {
         res.status(200).type("text/plain").send((0, loadBalancer_1.getURL)());
     });
-    const httpsServer = https_1.default.createServer({
-        key: fs.readFileSync("/etc/letsencrypt/live/infinitezero.net/privkey.pem"),
-        cert: fs.readFileSync("/etc/letsencrypt/live/infinitezero.net/fullchain.pem"),
-    }, app);
-    const httpServer = http_1.default.createServer(app);
-    httpsServer.listen(HTTPS_PORT, () => {
-        console.log(`HTTPS Server running at: http://localhost:${HTTPS_PORT}/`);
-    });
+    var httpsServer;
+    if (constants_1.HTTPS.valueOf()) {
+        httpsServer = https_1.default.createServer({
+            key: fs.readFileSync(constants_1.HTTPS_KEY_PATH),
+            cert: fs.readFileSync(constants_1.HTTPS_CHAIN_PATH),
+        }, app);
+        httpsServer.listen(HTTPS_PORT, () => {
+            console.log(`HTTPS Server running at: http://localhost:${HTTPS_PORT}/`);
+        });
+    }
+    var httpServer = http_1.default.createServer(app);
     httpServer.listen(HTTP_PORT, () => {
         console.log(`HTTP Server running at: http://localhost:${HTTP_PORT}/`);
     });

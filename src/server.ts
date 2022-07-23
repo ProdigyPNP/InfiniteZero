@@ -5,7 +5,7 @@ import http from "http";
 import * as fs from "fs";
 import cors from "cors";
 import { VERSION, HTTPS, HTTPS_KEY_PATH, HTTPS_CHAIN_PATH } from "./constants";
-import { Analytics } from "./analytics";
+import { Analytics, CountUniqueIPs } from "./analytics";
 
 
 export async function startServer_https () {
@@ -49,6 +49,18 @@ export async function startServer_https () {
         res.status(200).type("image/png").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/favicon.png");
     });
 
+    // analytics.json
+    app.get("/analytics.json", (req, res) => {
+
+        // Removing /dist/ from the file uri. A messy way to do this, but it works (for now)
+        res.status(200).type("text/json").sendFile(__dirname.substring(0, __dirname.length - 5) + "/analytics/all.json");
+    });
+
+    // uniques
+    app.get("/uniques", (req, res) => {
+       
+        res.status(200).type("text/plain").send(CountUniqueIPs().toString());
+    });
 
 
     // Add P-NP substitutes

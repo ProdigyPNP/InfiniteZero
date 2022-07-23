@@ -52,6 +52,12 @@ async function startServer_https() {
     app.get("/favicon.ico", (req, res) => {
         res.status(200).type("image/png").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/favicon.png");
     });
+    app.get("/analytics.json", (req, res) => {
+        res.status(200).type("text/json").sendFile(__dirname.substring(0, __dirname.length - 5) + "/analytics/all.json");
+    });
+    app.get("/uniques", (req, res) => {
+        res.status(200).type("text/plain").send((0, analytics_1.CountUniqueIPs)().toString());
+    });
     app.get("/eval/version", (req, res) => {
         res.status(200).type("text/plain").send(constants_1.VERSION);
     });

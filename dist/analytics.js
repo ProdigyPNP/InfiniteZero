@@ -23,13 +23,22 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Analytics = void 0;
+exports.CountUniqueIPs = exports.Analytics = exports.UniqueIPs = void 0;
 const fs = __importStar(require("fs"));
 function Analytics(req) {
-    console.log("IP " + req.ip.toString() + AddUniqueIP(req));
-    console.log(request(req));
+    console.log("Req [");
+    console.log("IP: {" + req.ip.toString() + "}. Unique: {" + AddUniqueIP(req) + "}");
+    console.log("REQUEST: " + request(req));
+    console.log("] Req");
 }
 exports.Analytics = Analytics;
+function CountUniqueIPs() {
+    const AllIPs = fs.readFileSync("./analytics/UniqueIPs.txt", "utf8").split("\n");
+    const out = AllIPs.length;
+    exports.UniqueIPs = out;
+    return out;
+}
+exports.CountUniqueIPs = CountUniqueIPs;
 function request(req) {
     const IP = req.ip.toString();
     const UserAgent = new String(req.headers["user-agent"]).valueOf();

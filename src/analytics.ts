@@ -1,11 +1,28 @@
 import * as fs from "fs";
 
+export var UniqueIPs : number;
+
 export function Analytics (req : any) {
 
-    console.log("IP " + req.ip.toString() + AddUniqueIP(req));
-    console.log(request(req));
+    console.log("Req [")
+    console.log("IP: {" + req.ip.toString() + "}. Unique: {" + AddUniqueIP(req) + "}");
+    console.log("REQUEST: " + request(req));
+    console.log("] Req");
 
 }
+
+
+
+export function CountUniqueIPs () : number {
+
+    const AllIPs : string[] = fs.readFileSync("./analytics/UniqueIPs.txt", "utf8").split("\n");
+    const out : number = AllIPs.length;
+
+    UniqueIPs = out;
+
+    return out;
+}
+
 
 function request (req : any) : string {
 

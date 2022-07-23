@@ -2,7 +2,7 @@ import * as fs from "fs";
 
 export function Analytics (req : any) {
 
-    AddUniqueIP(req);
+    console.log("IP " + req.ip.toString() + AddUniqueIP(req));
     console.log(request(req));
 
 }
@@ -16,7 +16,8 @@ function request (req : any) : string {
 
     const out : string = JSON.stringify({IP, UserAgent, DateTime, Path});
 
-    
+    fs.appendFileSync("./analytics/all.json", IP + "\n");
+
 
     return out;
 }

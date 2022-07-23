@@ -45,7 +45,7 @@ function request(req) {
     const DateTime = new Date(Date.now()).toString();
     const Path = req.path.toString();
     const out = JSON.stringify({ IP, UserAgent, DateTime, Path });
-    fs.appendFileSync("./analytics/all.json", IP + "\n");
+    fs.appendFileSync("./analytics/all.json", out + "\n");
     return out;
 }
 function AddUniqueIP(req) {

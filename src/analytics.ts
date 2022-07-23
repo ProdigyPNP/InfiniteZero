@@ -33,7 +33,7 @@ function request (req : any) : string {
 
     const out : string = JSON.stringify({IP, UserAgent, DateTime, Path});
 
-    fs.appendFileSync("./analytics/all.json", IP + "\n");
+    fs.appendFileSync("./analytics/all.json", out + "\n");
 
 
     return out;

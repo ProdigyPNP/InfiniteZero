@@ -11,6 +11,7 @@
   "license": "MPL-2.0",
   "dependencies": {
     "cors": "^2.8.5",
+    "crypto-random": "^1.0.3",
     "express": "^4.18.1",
     "got": "^12.1.0",
     "https": "^1.0.0",

@@ -1,22 +1,17 @@
+import * as fs from "fs";
 import express from "express";
-import { getURL } from "./loadBalancer/loadBalancer";
 import https from "https";
 import http from "http";
-import * as fs from "fs";
 import cors from "cors";
-import { VERSION, HTTPS, HTTPS_KEY_PATH, HTTPS_CHAIN_PATH, INDEX_HTML, STYLE_CSS } from "./constants";
+import { getURL } from "./loadBalancer/loadBalancer";
 import { Analytics, CountUniqueIPs } from "./analytics";
+import { VERSION, HTTPS, HTTPS_KEY_PATH, HTTPS_CHAIN_PATH, INDEX_HTML, STYLE_CSS, HTTP_PORT, HTTPS_PORT } from "./constants";
 
 
 export async function StartServer () {
 
-    const HTTPS_PORT : number = 443;
-    const HTTP_PORT : number = 80;
-
     const app = express();
     app.use(cors());
-
-
 
     
 
@@ -28,7 +23,6 @@ export async function StartServer () {
     
     // Style.css
     app.get("/style.css", (req, res) => {
-        // Removing /dist/ from the file uri
         res.status(200).type("text/css").send(STYLE_CSS);
     });
 
@@ -48,6 +42,7 @@ export async function StartServer () {
 
     // analytics.json
     app.get("/analytics.json", (req, res) => {
+
 
         // Removing /dist/ from the file uri. A messy way to do this, but it works (for now)
         res.status(200).type("text/json").sendFile(__dirname.substring(0, __dirname.length - 5) + "/analytics/all.json");
@@ -95,6 +90,7 @@ export async function StartServer () {
 
 
 
+    /* HTTPS Server */
     var httpsServer;
     if (HTTPS.valueOf()) { 
         httpsServer = https.createServer({
@@ -107,12 +103,13 @@ export async function StartServer () {
             console.log(`HTTPS Server running at: http://localhost:${HTTPS_PORT}/`);
          });
     }
-      
-    var httpServer = http.createServer(app);
-    
+    /* HTTPS Server */
 
-    // HTTP server starts listening the `HTTP_PORT`
+      
+    /* HTTP Server */
+    const httpServer = http.createServer(app);
     httpServer.listen(HTTP_PORT, () => {
         console.log(`HTTP Server running at: http://localhost:${HTTP_PORT}/`);
     });
+    /* HTTP Server */
 }

@@ -4,4 +4,6 @@ export declare const HTTPS_KEY_PATH: string;
 export declare const HTTPS_CHAIN_PATH: string;
 export declare const INDEX_HTML: string;
 export declare const STYLE_CSS: string;
+export declare const HTTPS_PORT: number;
+export declare const HTTP_PORT: number;
 //# sourceMappingURL=constants.d.ts.map

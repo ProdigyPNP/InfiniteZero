@@ -1,2 +1,2 @@
-export declare function startServer_https(): Promise<void>;
+export declare function StartServer(): Promise<void>;
 //# sourceMappingURL=server.d.ts.map

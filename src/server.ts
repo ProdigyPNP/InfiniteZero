@@ -4,18 +4,16 @@ import https from "https";
 import http from "http";
 import * as fs from "fs";
 import cors from "cors";
-import { VERSION, HTTPS, HTTPS_KEY_PATH, HTTPS_CHAIN_PATH } from "./constants";
+import { VERSION, HTTPS, HTTPS_KEY_PATH, HTTPS_CHAIN_PATH, INDEX_HTML, STYLE_CSS } from "./constants";
 import { Analytics, CountUniqueIPs } from "./analytics";
 
 
-export async function startServer_https () {
+export async function StartServer () {
 
     const HTTPS_PORT : number = 443;
     const HTTP_PORT : number = 80;
 
-    
     const app = express();
-
     app.use(cors());
 
 
@@ -24,15 +22,14 @@ export async function startServer_https () {
 
     // Index.html
     app.get("/", (req, res) => {
-        // Removing /dist/ from the file uri
-        res.status(200).type("text/html").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/index.html");
+        res.status(200).type("text/html").send(INDEX_HTML);
     });
     
     
     // Style.css
     app.get("/style.css", (req, res) => {
         // Removing /dist/ from the file uri
-        res.status(200).type("text/css").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/style.css");
+        res.status(200).type("text/css").send(STYLE_CSS);
     });
 
     // favicon.png

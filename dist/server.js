@@ -26,7 +26,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.startServer_https = void 0;
+exports.StartServer = void 0;
 const express_1 = __importDefault(require("express"));
 const loadBalancer_1 = require("./loadBalancer/loadBalancer");
 const https_1 = __importDefault(require("https"));
@@ -35,22 +35,22 @@ const fs = __importStar(require("fs"));
 const cors_1 = __importDefault(require("cors"));
 const constants_1 = require("./constants");
 const analytics_1 = require("./analytics");
-async function startServer_https() {
+async function StartServer() {
     const HTTPS_PORT = 443;
     const HTTP_PORT = 80;
     const app = (0, express_1.default)();
     app.use((0, cors_1.default)());
     app.get("/", (req, res) => {
-        res.status(200).type("text/html").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/index.html");
+        res.status(200).type("text/html").send(constants_1.INDEX_HTML);
     });
     app.get("/style.css", (req, res) => {
-        res.status(200).type("text/css").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/style.css");
+        res.status(200).type("text/css").send(constants_1.STYLE_CSS);
     });
     app.get("/favicon.png", (req, res) => {
-        res.status(200).type("image/png").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/favicon.png");
+        res.status(200).type("image/png").send(constants_1.FAVICON_PNG);
     });
     app.get("/favicon.ico", (req, res) => {
-        res.status(200).type("image/png").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/favicon.png");
+        res.status(200).type("image/png").send(constants_1.FAVICON_PNG);
     });
     app.get("/analytics.json", (req, res) => {
         res.status(200).type("text/json").sendFile(__dirname.substring(0, __dirname.length - 5) + "/analytics/all.json");
@@ -87,5 +87,5 @@ async function startServer_https() {
         console.log(`HTTP Server running at: http://localhost:${HTTP_PORT}/`);
     });
 }
-exports.startServer_https = startServer_https;
+exports.StartServer = StartServer;
 //# sourceMappingURL=server.js.map

@@ -47,10 +47,10 @@ async function StartServer() {
         res.status(200).type("text/css").send(constants_1.STYLE_CSS);
     });
     app.get("/favicon.png", (req, res) => {
-        res.status(200).type("image/png").send(constants_1.FAVICON_PNG);
+        res.status(200).type("image/png").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/favicon.png");
     });
     app.get("/favicon.ico", (req, res) => {
-        res.status(200).type("image/png").send(constants_1.FAVICON_PNG);
+        res.status(200).type("image/png").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/favicon.png");
     });
     app.get("/analytics.json", (req, res) => {
         res.status(200).type("text/json").sendFile(__dirname.substring(0, __dirname.length - 5) + "/analytics/all.json");

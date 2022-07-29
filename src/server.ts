@@ -8,12 +8,14 @@ import { Analytics, CountUniqueIPs } from "./analytics";
 import { VERSION, HTTPS, HTTPS_KEY_PATH, HTTPS_CHAIN_PATH, INDEX_HTML, STYLE_CSS, HTTP_PORT, HTTPS_PORT } from "./constants";
 
 
-export async function StartServer () {
+export function StartServer () : void {
 
     const app = express();
     app.use(cors());
 
     
+
+    /** WEBSITE */
 
     // Index.html
     app.get("/", (req, res) => {
@@ -39,10 +41,16 @@ export async function StartServer () {
         // Removing /dist/ from the file uri. A messy way to do this, but it works (for now)
         res.status(200).type("image/png").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/favicon.png");
     });
+    /** WEBSITE */
+
+
+
+
+
+    /** ANALYTICS */
 
     // analytics.json
     app.get("/analytics.json", (req, res) => {
-
 
         // Removing /dist/ from the file uri. A messy way to do this, but it works (for now)
         res.status(200).type("text/json").sendFile(__dirname.substring(0, __dirname.length - 5) + "/analytics/all.json");
@@ -50,18 +58,31 @@ export async function StartServer () {
 
     // uniques
     app.get("/uniques", (req, res) => {
-       
         res.status(200).type("text/plain").send(CountUniqueIPs().toString());
     });
+    /** ANALYTICS */
 
 
-    // Add P-NP substitutes
-    app.get("/eval/version", (req, res) => {
+    
+
+
+    // Version
+    app.get("/version", (req, res) => {
         res.status(200).type("text/plain").send(VERSION);
     });
 
 
 
+
+
+
+
+    /** USED BY PHEX */
+    
+    // Add P-NP substitutes
+    app.get("/eval/version", (req, res) => {
+        res.status(200).type("text/plain").send(VERSION);
+    });
 
 
 
@@ -74,14 +95,15 @@ export async function StartServer () {
 (async () => {
     eval(await (await fetch("${getURL()}/game.min.js")).text());
 })();
-`.replace("\n", ""));
+`);
     });
 
 
     // The domain
-    app.get("*", function(req, res) {
+    app.get("*", (req, res) => {
         res.status(200).type("text/plain").send(getURL());
     });
+    /** USED BY PHEX */
 
 
 

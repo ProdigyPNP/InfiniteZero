@@ -4,7 +4,7 @@ import * as fs from "fs";
 export const VERSION : string = "2.2.0";
 
 /** Run HTTPS Server */
-export const HTTPS : boolean = true;
+export const HTTPS : boolean = false;
 /** Path to HTTPS Private Key */
 export const HTTPS_KEY_PATH : string = "/etc/letsencrypt/live/infinitezero.net/privkey.pem";
 /** Path to HTTPS Full Chain */

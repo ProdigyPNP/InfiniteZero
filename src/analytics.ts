@@ -2,7 +2,7 @@ import * as fs from "fs";
 
 export var UniqueIPs : number;
 
-export function Analytics (req : any) {
+export function Analytics (req : any) : void {
 
     console.log("Req [")
     console.log("IP: {" + req.ip.toString() + "}. Unique: {" + AddUniqueIP(req) + "}");

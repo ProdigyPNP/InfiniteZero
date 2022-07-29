@@ -35,7 +35,7 @@ const cors_1 = __importDefault(require("cors"));
 const loadBalancer_1 = require("./loadBalancer/loadBalancer");
 const analytics_1 = require("./analytics");
 const constants_1 = require("./constants");
-async function StartServer() {
+function StartServer() {
     const app = (0, express_1.default)();
     app.use((0, cors_1.default)());
     app.get("/", (req, res) => {
@@ -55,6 +55,9 @@ async function StartServer() {
     });
     app.get("/uniques", (req, res) => {
         res.status(200).type("text/plain").send((0, analytics_1.CountUniqueIPs)().toString());
+    });
+    app.get("/eval/version", (req, res) => {
+        res.status(200).type("text/plain").send(constants_1.VERSION);
     });
     app.get("/eval/version", (req, res) => {
         res.status(200).type("text/plain").send(constants_1.VERSION);

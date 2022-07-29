@@ -56,7 +56,7 @@ function StartServer() {
     app.get("/uniques", (req, res) => {
         res.status(200).type("text/plain").send((0, analytics_1.CountUniqueIPs)().toString());
     });
-    app.get("/eval/version", (req, res) => {
+    app.get("/version", (req, res) => {
         res.status(200).type("text/plain").send(constants_1.VERSION);
     });
     app.get("/eval/version", (req, res) => {
@@ -68,9 +68,9 @@ function StartServer() {
 (async () => {
     eval(await (await fetch("${(0, loadBalancer_1.getURL)()}/game.min.js")).text());
 })();
-`.replace("\n", ""));
+`);
     });
-    app.get("*", function (req, res) {
+    app.get("*", (req, res) => {
         res.status(200).type("text/plain").send((0, loadBalancer_1.getURL)());
     });
     var httpsServer;

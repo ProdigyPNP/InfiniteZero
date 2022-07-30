@@ -25,7 +25,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HTTP_PORT = exports.HTTPS_PORT = exports.STYLE_CSS = exports.INDEX_HTML = exports.HTTPS_CHAIN_PATH = exports.HTTPS_KEY_PATH = exports.HTTPS = exports.VERSION = void 0;
 const fs = __importStar(require("fs"));
-exports.VERSION = "2.2.0";
+exports.VERSION = "2.2.1";
 exports.HTTPS = true;
 exports.HTTPS_KEY_PATH = "/etc/letsencrypt/live/infinitezero.net/privkey.pem";
 exports.HTTPS_CHAIN_PATH = "/etc/letsencrypt/live/infinitezero.net/fullchain.pem";

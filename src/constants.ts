@@ -1,7 +1,7 @@
 import * as fs from "fs";
 
 /** PHEx Version */
-export const VERSION : string = "2.2.0";
+export const VERSION : string = "2.2.1";
 
 /** Run HTTPS Server */
 export const HTTPS : boolean = true;

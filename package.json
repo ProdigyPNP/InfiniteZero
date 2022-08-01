@@ -1,6 +1,6 @@
 {
   "name": "infinite-zero",
-  "version": "0.0.1",
+  "version": "2.2.1",
   "description": "Infinite Prodigy hacks, even on day Zero.",
   "main": "dist/index.js",
   "scripts": {

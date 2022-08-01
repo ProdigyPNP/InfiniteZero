@@ -6,10 +6,11 @@ import cors from "cors";
 import { getURL } from "./loadBalancer/loadBalancer";
 import { Analytics, CountUniqueIPs } from "./analytics";
 import { VERSION, HTTPS, HTTPS_KEY_PATH, HTTPS_CHAIN_PATH, INDEX_HTML, STYLE_CSS, HTTP_PORT, HTTPS_PORT } from "./constants";
+import { rLimit } from "./rateLimiter";
 
 export function log (content : string) : boolean {
     try {
-        console.log("[INFINITE-ZERO] " + content);
+        console.log("[無限零服器] " + content);
     } catch (error) {
         console.error(error);
         return false;
@@ -29,6 +30,12 @@ export function StartServer () : void {
 
     log("ИСПОЛЬЗУЕМ CORS");
     app.use(cors());
+
+
+    log("ИСПОЛЬЗУЕМ RATE LIMITER");
+    app.use(rLimit);
+
+
 
     
 

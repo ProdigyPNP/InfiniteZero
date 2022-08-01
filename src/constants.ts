@@ -2,6 +2,14 @@
 import * as fs from "fs";
 
 
+
+/*-----------------------------------------------*
+ *                                               *
+ *                   CONSTANTS                   *
+ *                                               *
+ ------------------------------------------------*/
+
+
 /** Override your own PHEx version here, if not InfiniteZero will use the latest PHEx version. (updated manually by ProdigyPNP admins)
  * CAUTION: PHEx will prompt to update if the version does not math this one's version. */
 export const VERSION : string = "" || "2.2.1";

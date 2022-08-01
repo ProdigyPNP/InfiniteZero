@@ -18,12 +18,3 @@ export function getURL() : string {
 
     return new String(URLs[generated]).valueOf();
 }
-
-
-
-
-export function pingURL (url : String) {
-
-    
-}
-

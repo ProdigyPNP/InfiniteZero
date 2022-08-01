@@ -10,9 +10,11 @@
   "author": "ProdigyPNP",
   "license": "MPL-2.0",
   "dependencies": {
+    "@types/node-fetch": "^2.6.2",
     "cors": "^2.8.5",
     "crypto-random": "^1.0.3",
     "express": "^4.18.1",
+    "express-rate-limit": "^6.5.1",
     "got": "^12.3.0",
     "https": "^1.0.0",
     "node-fetch": "^3.2.10",

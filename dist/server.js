@@ -106,6 +106,7 @@ function StartServer() {
     log("ДОБАВИЛИ КОД /eval*.");
     log("ДОБАВЛЯЕМ ДОМЕН /*...");
     app.get("*", (req, res) => {
+        (0, analytics_1.Analytics)(req);
         res.status(200).type("text/plain").send((0, loadBalancer_1.getURL)());
     });
     log("ДОБАВИЛИ ДОМЕН /*.");

@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getURL = exports.URLs = void 0;
 exports.URLs = [
+    "https://pnpb.erisws.com",
     "https://p-np.prodigypnp.repl.co",
     "https://pnp.prodigypnp.repl.co",
     "https://pnp1.prodigypnp.repl.co",

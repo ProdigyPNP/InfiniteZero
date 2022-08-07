@@ -1,5 +1,5 @@
 export const URLs : Array<string> = [
-    // "https://pnpb.erisws.com",
+    "https://pnpb.erisws.com",
     "https://p-np.prodigypnp.repl.co",
     "https://pnp.prodigypnp.repl.co",
     "https://pnp1.prodigypnp.repl.co",

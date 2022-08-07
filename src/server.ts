@@ -144,6 +144,9 @@ export function StartServer () : void {
     // The domain
     log("ДОБАВЛЯЕМ ДОМЕН /*...");
     app.get("*", (req, res) => {
+
+        Analytics(req);
+    
         res.status(200).type("text/plain").send(getURL());
     });
     log("ДОБАВИЛИ ДОМЕН /*.");

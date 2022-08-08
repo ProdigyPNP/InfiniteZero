@@ -12,7 +12,7 @@ import * as fs from "fs";
 
 /** Override your own PHEx version here, if not InfiniteZero will use the latest PHEx version. (updated manually by ProdigyPNP admins)
  * CAUTION: PHEx will prompt to update if the version does not math this one's version. */
-export const VERSION : string = "" || "2.2.1";
+export const VERSION : string = "" || "3.0.0";
 
 /** If you do not want to run the HTTPS server, change this to false.
  * CAUTION: You will then need a seperate method to get HTTPS (or have none). */

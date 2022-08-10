@@ -12,7 +12,7 @@
   "dependencies": {
     "@types/node-fetch": "^2.6.2",
     "cors": "^2.8.5",
-    "crypto-random": "^1.0.3",
+    "crypto-random": "^2.0.1",
     "express": "^4.18.1",
     "express-rate-limit": "^6.5.1",
     "got": "^12.3.0",

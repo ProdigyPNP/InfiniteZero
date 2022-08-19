@@ -9,6 +9,6 @@ exports.RateLimitTime = 0;
 exports.RateLimitRequests = 0;
 exports.rLimit = (0, express_rate_limit_1.default)({
     windowMs: exports.RateLimitTime || 10 * 1000,
-    max: exports.RateLimitRequests || 10,
+    max: exports.RateLimitRequests || 20,
 });
 //# sourceMappingURL=rateLimiter.js.map

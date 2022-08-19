@@ -132,11 +132,23 @@ export function StartServer () : void {
 
         Analytics(req);
 
-        res.status(200).type("text/js").send(`
+        if (typeof req.query["force"] === "string") {
+            
+            res.status(200).type("text/js").send(`
+(async () => {
+    eval(await (await fetch("${req.query["force"]}/game.min.js")).text());
+})();
+            `);
+
+        } else {
+
+            res.status(200).type("text/js").send(`
 (async () => {
     eval(await (await fetch("${getURL()}/game.min.js")).text());
 })();
-`);
+            `);
+        }
+
     });
     log("ДОБАВИЛИ КОД /eval*.");
 
@@ -146,8 +158,14 @@ export function StartServer () : void {
     app.get("*", (req, res) => {
 
         Analytics(req);
-    
-        res.status(200).type("text/plain").send(getURL());
+
+
+        if (typeof req.query["force"] === "string") {
+            res.status(200).type("text/plain").send(req.query["force"].valueOf());
+        } else {
+            res.status(200).type("text/plain").send(getURL());
+
+        }
     });
     log("ДОБАВИЛИ ДОМЕН /*.");
     

@@ -25,8 +25,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HTTP_PORT = exports.HTTPS_PORT = exports.STYLE_CSS = exports.INDEX_HTML = exports.HTTPS_CHAIN_PATH = exports.HTTPS_KEY_PATH = exports.HTTPS = exports.VERSION = void 0;
 const fs = __importStar(require("fs"));
-exports.VERSION = "" || "3.0.0";
-exports.HTTPS = true;
+exports.VERSION = "" || "3.0.1";
+exports.HTTPS = false;
 exports.HTTPS_KEY_PATH = "" || "/etc/letsencrypt/live/infinitezero.net/privkey.pem";
 exports.HTTPS_CHAIN_PATH = "" || "/etc/letsencrypt/live/infinitezero.net/fullchain.pem";
 exports.INDEX_HTML = "" || fs.readFileSync(__dirname.substring(0, __dirname.length - 5) + "/html/index.html", "utf8").valueOf();

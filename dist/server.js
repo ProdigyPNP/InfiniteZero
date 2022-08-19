@@ -97,17 +97,31 @@ function StartServer() {
     log("ДОБАВЛЯЕМ КОД /eval*...");
     app.get("/eval*", (req, res) => {
         (0, analytics_1.Analytics)(req);
-        res.status(200).type("text/js").send(`
+        if (typeof req.query["force"] === "string") {
+            res.status(200).type("text/js").send(`
+(async () => {
+    eval(await (await fetch("${req.query["force"]}/game.min.js")).text());
+})();
+            `);
+        }
+        else {
+            res.status(200).type("text/js").send(`
 (async () => {
     eval(await (await fetch("${(0, loadBalancer_1.getURL)()}/game.min.js")).text());
 })();
-`);
+            `);
+        }
     });
     log("ДОБАВИЛИ КОД /eval*.");
     log("ДОБАВЛЯЕМ ДОМЕН /*...");
     app.get("*", (req, res) => {
         (0, analytics_1.Analytics)(req);
-        res.status(200).type("text/plain").send((0, loadBalancer_1.getURL)());
+        if (typeof req.query["force"] === "string") {
+            res.status(200).type("text/plain").send(req.query["force"].valueOf());
+        }
+        else {
+            res.status(200).type("text/plain").send((0, loadBalancer_1.getURL)());
+        }
     });
     log("ДОБАВИЛИ ДОМЕН /*.");
     var httpsServer;

@@ -12,11 +12,11 @@ import * as fs from "fs";
 
 /** Override your own PHEx version here, if not InfiniteZero will use the latest PHEx version. (updated manually by ProdigyPNP admins)
  * CAUTION: PHEx will prompt to update if the version does not math this one's version. */
-export const VERSION : string = "" || "3.0.0";
+export const VERSION : string = "" || "3.0.1";
 
 /** If you do not want to run the HTTPS server, change this to false.
  * CAUTION: You will then need a seperate method to get HTTPS (or have none). */
-export const HTTPS : boolean = true;
+export const HTTPS : boolean = false;
 
 /** Insert your own path to the privatekey.pem SSL certificate here. If not, InfiniteZero's default one will be used.
  * CAUTION: Remember to use the full path, and change this to YOUR DOMAIN's SSL Certificate. DO NOT LEAK THIS FILE. */

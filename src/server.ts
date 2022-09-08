@@ -4,7 +4,7 @@ import https from "https";
 import http from "http";
 import cors from "cors";
 import { getURL } from "./loadBalancer/loadBalancer";
-import { Analytics, CountUniqueIPs } from "./analytics";
+import { Analytics } from "./analytics";
 import { VERSION, HTTPS, HTTPS_KEY_PATH, HTTPS_CHAIN_PATH, INDEX_HTML, STYLE_CSS, HTTP_PORT, HTTPS_PORT } from "./constants";
 import { rLimit } from "./rateLimiter";
 

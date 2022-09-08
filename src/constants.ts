@@ -1,5 +1,6 @@
 /** File System */
 import * as fs from "fs";
+import path from "path";
 
 
 
@@ -16,7 +17,7 @@ export const VERSION : string = "" || "3.0.1";
 
 /** If you do not want to run the HTTPS server, change this to false.
  * CAUTION: You will then need a seperate method to get HTTPS (or have none). */
-export const HTTPS : boolean = true;
+export const HTTPS : boolean = false;
 
 /** Insert your own path to the privatekey.pem SSL certificate here. If not, InfiniteZero's default one will be used.
  * CAUTION: Remember to use the full path, and change this to YOUR DOMAIN's SSL Certificate. DO NOT LEAK THIS FILE. */
@@ -28,11 +29,11 @@ export const HTTPS_CHAIN_PATH : string = "" || "/etc/letsencrypt/live/infiniteze
 
 /** Insert your own contents of index.html here, if not InfiniteZero's normal index.html will be used.
  * CAUTION: Remember that this is the exported main page of the site. Be wise. */
-export const INDEX_HTML : string = "" || fs.readFileSync(__dirname.substring(0, __dirname.length - 5) + "/html/index.html", "utf8").valueOf();
+export const INDEX_HTML : string = "" || fs.readFileSync(path.join(__dirname, "..", "/html/index.html"), "utf8").valueOf();
 
 /** Insert your own contents of style.css here, if not InfiniteZero's normal style.css will be used.
  * CAUTION: This is exported at `infinitezero.net/style.css`. Remember to insert a stylesheet link in index.html to use this. */
-export const STYLE_CSS : string = "" || fs.readFileSync(__dirname.substring(0, __dirname.length - 5) + "/html/style.css", "utf8").valueOf();
+export const STYLE_CSS : string = "" || fs.readFileSync(path.join(__dirname, "..", "/html/style.css"), "utf8").valueOf();
 
 /** Replace 0 with your own server port here, if not it'll default to 443.
  * CAUTION: Remeber that server port 80 is the default http port, and port 443 is the default HTTPS port. */

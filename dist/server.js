@@ -32,6 +32,7 @@ const express_1 = __importDefault(require("express"));
 const https_1 = __importDefault(require("https"));
 const http_1 = __importDefault(require("http"));
 const cors_1 = __importDefault(require("cors"));
+const path_1 = __importDefault(require("path"));
 const loadBalancer_1 = require("./loadBalancer/loadBalancer");
 const analytics_1 = require("./analytics");
 const constants_1 = require("./constants");
@@ -64,6 +65,16 @@ function StartServer() {
         res.status(200).type("text/css").send(constants_1.STYLE_CSS);
     });
     log("ДОБАВИЛИ СТРАНИЦУ /style.css.");
+    log("ДОБАВЛЯЕМ ФАЙЛ /analytics.json...");
+    app.get("/analytics.json", (req, res) => {
+        res.status(200).type("text/json").sendFile(path_1.default.join(__dirname, "..", "/analytics/all.json"));
+    });
+    log("ДОБАВИЛИ ФАЙЛ /analytics.json.");
+    log("ДОБАВЛЯЕМ ФАЙЛ /uniques...");
+    app.get("/uniques", (_req, res) => {
+        res.status(200).type("text/plain").send((0, analytics_1.CountUniqueIPs)().toString());
+    });
+    log("ДОБАВИЛИ ФАЙЛ /uniques.");
     log("ДОБАВЛЯЕМ ФАЙЛ /version...");
     app.get("/version", (req, res) => {
         res.status(200).type("text/plain").send(constants_1.VERSION);

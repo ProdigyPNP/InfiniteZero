@@ -4,8 +4,9 @@
   "description": "Infinite Prodigy hacks, even on day Zero.",
   "main": "dist/index.js",
   "scripts": {
-    "start": "node dist",
-    "build": "npx tsc"
+    "build": "echo \"Please use prestart instead.\" && npm run prestart",
+    "prestart": "npx tsc",
+    "start": "node dist"
   },
   "author": "ProdigyPNP",
   "license": "MPL-2.0",
@@ -18,6 +19,7 @@
     "got": "^12.3.0",
     "https": "^1.0.0",
     "node-fetch": "^3.2.10",
+    "path": "^0.12.7",
     "typescript": "^4.7.4"
   },
   "devDependencies": {

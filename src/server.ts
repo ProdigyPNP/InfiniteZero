@@ -43,7 +43,7 @@ export function StartServer () : void {
 
     // Index.html
     log("ДОБАВЛЯЕМ СТРАНИЦУ /index.html...");
-    app.get("/", (req, res) => {
+    app.get("/", (_req, res) => {
         res.status(200).type("text/html").send(INDEX_HTML);
     });
     log("ДОБАВИЛИ СТРАНИЦУ /index.html.");
@@ -51,52 +51,41 @@ export function StartServer () : void {
     
     // Style.css
     log("ДОБАВЛЯЕМ СТРАНИЦУ /style.css...");
-    app.get("/style.css", (req, res) => {
+    app.get("/style.css", (_req, res) => {
         res.status(200).type("text/css").send(STYLE_CSS);
     });
     log("ДОБАВИЛИ СТРАНИЦУ /style.css.");
 
 
-    /* favicon.png
-    log("ДОБАВЛЯЕМ КАРТИНКУ /favicon.png...");
-    app.get("/favicon.png", (req, res) => {
-        // Removing /dist/ from the file uri. A messy way to do this, but it works (for now)
-        res.status(200).type("image/png").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/favicon.png");
+    log("ДОБАВЛЯЕМ КАРТИНКУ /favicon...");
+    app.get("/favicon.*", (_req, res) => {
+        res.redirect("https://raw.githubusercontent.com/ProdigyPNP/ProdigyMathGameHacking/master/.github/PTB.png");
     });
-    log("ДОБАВИЛИ КАРТИНКУ /favicon.png."); */
+    log("ДОБАВИЛИ КАРТИНКУ /favicon.");
 
-
-    /* favicon.ico
-    log("ДОБАВЛЯЕМ КАРТИНКУ /favicon.ico...");
-    app.get("/favicon.ico", (req, res) => {
-        // Removing /dist/ from the file uri. A messy way to do this, but it works (for now)
-        res.status(200).type("image/png").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/favicon.png");
-    });
-    log("ДОБАВИЛИ КАРТИНКУ /favicon.ico.");
-    /** WEBSITE */
 
 
 
 
 
     /** ANALYTICS */
-/*
+
     // analytics.json
     log("ДОБАВЛЯЕМ ФАЙЛ /analytics.json...");
     app.get("/analytics.json", (req, res) => {
-        // Removing /dist/ from the file uri. A messy way to do this, but it works (for now)
-        res.status(200).type("text/json").sendFile(__dirname.substring(0, __dirname.length - 5) + "/analytics/all.json");
+        res.sendStatus(403);
+        // res.status(200).type("text/json").sendFile(path.join(__dirname, "..", "/analytics/all.json"));
     });
     log("ДОБАВИЛИ ФАЙЛ /analytics.json.");
 
     
-   /* // uniques
+    // uniques
     log("ДОБАВЛЯЕМ ФАЙЛ /uniques...");
-    app.get("/uniques", (req, res) => {
-        res.status(200).type("text/plain").send(CountUniqueIPs().toString());
+    app.get("/uniques", (_req, res) => {
+        res.sendStatus(403);
+        // res.status(200).type("text/plain").send(CountUniqueIPs().toString());
     });
     log("ДОБАВИЛИ ФАЙЛ /uniques.");
-    ANALYTICS */
 
 
     
@@ -104,7 +93,7 @@ export function StartServer () : void {
 
     // Version
     log("ДОБАВЛЯЕМ ФАЙЛ /version...");
-    app.get("/version", (req, res) => {
+    app.get("/version", (_req, res) => {
         res.status(200).type("text/plain").send(VERSION);
     });
     log("ДОБАВИЛИ ФАЙЛ /version.");
@@ -133,8 +122,12 @@ export function StartServer () : void {
         Analytics(req);
 
         if (typeof req.query["force"] === "string") {
+
+            if (req.query["force"].length > 100) {
+                return res.sendStatus(413);
+            }
             
-            res.status(200).type("text/js").send(`
+            return res.status(200).type("text/js").send(`
 (async () => {
     eval(await (await fetch("${req.query["force"]}/game.min.js")).text());
 })();
@@ -142,7 +135,7 @@ export function StartServer () : void {
 
         } else {
 
-            res.status(200).type("text/js").send(`
+            return res.status(200).type("text/js").send(`
 (async () => {
     eval(await (await fetch("${getURL()}/game.min.js")).text());
 })();

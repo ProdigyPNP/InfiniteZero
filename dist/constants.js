@@ -22,15 +22,19 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HTTP_PORT = exports.HTTPS_PORT = exports.STYLE_CSS = exports.INDEX_HTML = exports.HTTPS_CHAIN_PATH = exports.HTTPS_KEY_PATH = exports.HTTPS = exports.VERSION = void 0;
 const fs = __importStar(require("fs"));
+const path_1 = __importDefault(require("path"));
 exports.VERSION = "" || "3.0.1";
 exports.HTTPS = false;
 exports.HTTPS_KEY_PATH = "" || "/etc/letsencrypt/live/infinitezero.net/privkey.pem";
 exports.HTTPS_CHAIN_PATH = "" || "/etc/letsencrypt/live/infinitezero.net/fullchain.pem";
-exports.INDEX_HTML = "" || fs.readFileSync(__dirname.substring(0, __dirname.length - 5) + "/html/index.html", "utf8").valueOf();
-exports.STYLE_CSS = "" || fs.readFileSync(__dirname.substring(0, __dirname.length - 5) + "/html/style.css", "utf8").valueOf();
+exports.INDEX_HTML = "" || fs.readFileSync(path_1.default.join(__dirname, "..", "/html/index.html"), "utf8").valueOf();
+exports.STYLE_CSS = "" || fs.readFileSync(path_1.default.join(__dirname, "..", "/html/style.css"), "utf8").valueOf();
 exports.HTTPS_PORT = 0 || 443;
 exports.HTTP_PORT = 0 || 80;
 //# sourceMappingURL=constants.js.map

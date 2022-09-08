@@ -32,7 +32,6 @@ const express_1 = __importDefault(require("express"));
 const https_1 = __importDefault(require("https"));
 const http_1 = __importDefault(require("http"));
 const cors_1 = __importDefault(require("cors"));
-const path_1 = __importDefault(require("path"));
 const loadBalancer_1 = require("./loadBalancer/loadBalancer");
 const analytics_1 = require("./analytics");
 const constants_1 = require("./constants");
@@ -56,27 +55,32 @@ function StartServer() {
     log("ИСПОЛЬЗУЕМ RATE LIMITER");
     app.use(rateLimiter_1.rLimit);
     log("ДОБАВЛЯЕМ СТРАНИЦУ /index.html...");
-    app.get("/", (req, res) => {
+    app.get("/", (_req, res) => {
         res.status(200).type("text/html").send(constants_1.INDEX_HTML);
     });
     log("ДОБАВИЛИ СТРАНИЦУ /index.html.");
     log("ДОБАВЛЯЕМ СТРАНИЦУ /style.css...");
-    app.get("/style.css", (req, res) => {
+    app.get("/style.css", (_req, res) => {
         res.status(200).type("text/css").send(constants_1.STYLE_CSS);
     });
     log("ДОБАВИЛИ СТРАНИЦУ /style.css.");
+    log("ДОБАВЛЯЕМ КАРТИНКУ /favicon...");
+    app.get("/favicon.*", (_req, res) => {
+        res.redirect("https://raw.githubusercontent.com/ProdigyPNP/ProdigyMathGameHacking/master/.github/PTB.png");
+    });
+    log("ДОБАВИЛИ КАРТИНКУ /favicon.");
     log("ДОБАВЛЯЕМ ФАЙЛ /analytics.json...");
     app.get("/analytics.json", (req, res) => {
-        res.status(200).type("text/json").sendFile(path_1.default.join(__dirname, "..", "/analytics/all.json"));
+        res.sendStatus(403);
     });
     log("ДОБАВИЛИ ФАЙЛ /analytics.json.");
     log("ДОБАВЛЯЕМ ФАЙЛ /uniques...");
     app.get("/uniques", (_req, res) => {
-        res.status(200).type("text/plain").send((0, analytics_1.CountUniqueIPs)().toString());
+        res.sendStatus(403);
     });
     log("ДОБАВИЛИ ФАЙЛ /uniques.");
     log("ДОБАВЛЯЕМ ФАЙЛ /version...");
-    app.get("/version", (req, res) => {
+    app.get("/version", (_req, res) => {
         res.status(200).type("text/plain").send(constants_1.VERSION);
     });
     log("ДОБАВИЛИ ФАЙЛ /version.");
@@ -89,14 +93,17 @@ function StartServer() {
     app.get("/eval*", (req, res) => {
         (0, analytics_1.Analytics)(req);
         if (typeof req.query["force"] === "string") {
-            res.status(200).type("text/js").send(`
+            if (req.query["force"].length > 100) {
+                return res.sendStatus(413);
+            }
+            return res.status(200).type("text/js").send(`
 (async () => {
     eval(await (await fetch("${req.query["force"]}/game.min.js")).text());
 })();
             `);
         }
         else {
-            res.status(200).type("text/js").send(`
+            return res.status(200).type("text/js").send(`
 (async () => {
     eval(await (await fetch("${(0, loadBalancer_1.getURL)()}/game.min.js")).text());
 })();

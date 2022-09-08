@@ -57,16 +57,16 @@ export function StartServer () : void {
     log("ДОБАВИЛИ СТРАНИЦУ /style.css.");
 
 
-    // favicon.png
+    /* favicon.png
     log("ДОБАВЛЯЕМ КАРТИНКУ /favicon.png...");
     app.get("/favicon.png", (req, res) => {
         // Removing /dist/ from the file uri. A messy way to do this, but it works (for now)
         res.status(200).type("image/png").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/favicon.png");
     });
-    log("ДОБАВИЛИ КАРТИНКУ /favicon.png.");
+    log("ДОБАВИЛИ КАРТИНКУ /favicon.png."); */
 
 
-    // favicon.ico
+    /* favicon.ico
     log("ДОБАВЛЯЕМ КАРТИНКУ /favicon.ico...");
     app.get("/favicon.ico", (req, res) => {
         // Removing /dist/ from the file uri. A messy way to do this, but it works (for now)
@@ -80,7 +80,7 @@ export function StartServer () : void {
 
 
     /** ANALYTICS */
-
+/*
     // analytics.json
     log("ДОБАВЛЯЕМ ФАЙЛ /analytics.json...");
     app.get("/analytics.json", (req, res) => {
@@ -90,13 +90,13 @@ export function StartServer () : void {
     log("ДОБАВИЛИ ФАЙЛ /analytics.json.");
 
     
-    // uniques
+   /* // uniques
     log("ДОБАВЛЯЕМ ФАЙЛ /uniques...");
     app.get("/uniques", (req, res) => {
         res.status(200).type("text/plain").send(CountUniqueIPs().toString());
     });
     log("ДОБАВИЛИ ФАЙЛ /uniques.");
-    /** ANALYTICS */
+    ANALYTICS */
 
 
     

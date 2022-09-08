@@ -20,6 +20,6 @@ export const RateLimitRequests : number = 0;
 /** Rate Limiter for express server.
  * DO NOT TOUCH - НЕ ТРОГАТЬ - 請勿觸摸 - ĐỪNG ĐỤNG VÀO - 手を触れないでください - NE PAS TOUCHER - لا تلمس - NE TUŜU */
 export const rLimit = RateLimit({
-     windowMs:  RateLimitTime || 10*1000, // 10 seconds
-     max: RateLimitRequests || 20, // limit each IP to 4 requests per windowMs
+     windowMs:  RateLimitTime || 20*1000, // 10 seconds
+     max: RateLimitRequests || 4, // limit each IP to 4 requests per windowMs
 }); 

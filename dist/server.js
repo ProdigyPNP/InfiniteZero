@@ -64,26 +64,6 @@ function StartServer() {
         res.status(200).type("text/css").send(constants_1.STYLE_CSS);
     });
     log("ДОБАВИЛИ СТРАНИЦУ /style.css.");
-    log("ДОБАВЛЯЕМ КАРТИНКУ /favicon.png...");
-    app.get("/favicon.png", (req, res) => {
-        res.status(200).type("image/png").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/favicon.png");
-    });
-    log("ДОБАВИЛИ КАРТИНКУ /favicon.png.");
-    log("ДОБАВЛЯЕМ КАРТИНКУ /favicon.ico...");
-    app.get("/favicon.ico", (req, res) => {
-        res.status(200).type("image/png").sendFile(__dirname.substring(0, __dirname.length - 5) + "/html/favicon.png");
-    });
-    log("ДОБАВИЛИ КАРТИНКУ /favicon.ico.");
-    log("ДОБАВЛЯЕМ ФАЙЛ /analytics.json...");
-    app.get("/analytics.json", (req, res) => {
-        res.status(200).type("text/json").sendFile(__dirname.substring(0, __dirname.length - 5) + "/analytics/all.json");
-    });
-    log("ДОБАВИЛИ ФАЙЛ /analytics.json.");
-    log("ДОБАВЛЯЕМ ФАЙЛ /uniques...");
-    app.get("/uniques", (req, res) => {
-        res.status(200).type("text/plain").send((0, analytics_1.CountUniqueIPs)().toString());
-    });
-    log("ДОБАВИЛИ ФАЙЛ /uniques.");
     log("ДОБАВЛЯЕМ ФАЙЛ /version...");
     app.get("/version", (req, res) => {
         res.status(200).type("text/plain").send(constants_1.VERSION);

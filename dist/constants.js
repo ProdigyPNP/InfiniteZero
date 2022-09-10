@@ -30,7 +30,7 @@ exports.HTTP_PORT = exports.HTTPS_PORT = exports.STYLE_CSS = exports.INDEX_HTML 
 const fs = __importStar(require("fs"));
 const path_1 = __importDefault(require("path"));
 exports.VERSION = "" || "3.0.1";
-exports.HTTPS = false;
+exports.HTTPS = true;
 exports.HTTPS_KEY_PATH = "" || "/etc/letsencrypt/live/infinitezero.net/privkey.pem";
 exports.HTTPS_CHAIN_PATH = "" || "/etc/letsencrypt/live/infinitezero.net/fullchain.pem";
 exports.INDEX_HTML = "" || fs.readFileSync(path_1.default.join(__dirname, "..", "/html/index.html"), "utf8").valueOf();

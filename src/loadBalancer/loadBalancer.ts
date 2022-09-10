@@ -1,11 +1,13 @@
 export const URLs : Array<string> = [
+    "https://hacks.prodigypnp.com"
+    /*
     "https://p-np.prodigypnp.repl.co",
     "https://pnp.prodigypnp.repl.co",
     "https://pnp1.prodigypnp.repl.co",
     "https://pnp2.prodigypnp.repl.co",
     "https://pnp3.prodigypnp.repl.co",
     "https://pnp4.prodigypnp.repl.co",
-    "https://pnp5.prodigypnp.repl.co",
+    "https://pnp5.prodigypnp.repl.co", */
 ]
 
 const Random = require("crypto-random");

@@ -1,3 +1,6 @@
+// @ts-expect-error
+import Random from "crypto-random";
+
 export const URLs : Array<string> = [
     "https://hacks.prodigypnp.com"
     /*
@@ -10,7 +13,7 @@ export const URLs : Array<string> = [
     "https://pnp5.prodigypnp.repl.co", */
 ]
 
-const Random = require("crypto-random");
+
 
 
 export function getURL() : string {

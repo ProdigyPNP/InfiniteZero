@@ -1,40 +1,13 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.HTTP_PORT = exports.HTTPS_PORT = exports.STYLE_CSS = exports.INDEX_HTML = exports.HTTPS_CHAIN_PATH = exports.HTTPS_KEY_PATH = exports.HTTPS = exports.VERSION = void 0;
-const fs = __importStar(require("fs"));
-const path_1 = __importDefault(require("path"));
-exports.VERSION = "" || "3.0.1";
-exports.HTTPS = true;
-exports.HTTPS_KEY_PATH = "" || "/etc/letsencrypt/live/infinitezero.net/privkey.pem";
-exports.HTTPS_CHAIN_PATH = "" || "/etc/letsencrypt/live/infinitezero.net/fullchain.pem";
-exports.INDEX_HTML = "" || fs.readFileSync(path_1.default.join(__dirname, "..", "/html/index.html"), "utf8").valueOf();
-exports.STYLE_CSS = "" || fs.readFileSync(path_1.default.join(__dirname, "..", "/html/style.css"), "utf8").valueOf();
-exports.HTTPS_PORT = 0 || 443;
-exports.HTTP_PORT = 0 || 80;
+﻿import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+export const __dirname = path.resolve(fileURLToPath(import.meta.url), "..");
+export const VERSION = "" || "3.0.1";
+export const HTTPS = false;
+export const HTTPS_KEY_PATH = "" || "/etc/letsencrypt/live/infinitezero.net/privkey.pem";
+export const HTTPS_CHAIN_PATH = "" || "/etc/letsencrypt/live/infinitezero.net/fullchain.pem";
+export const INDEX_HTML = "" || fs.readFileSync(path.join(__dirname, "..", "/html/index.html"), "utf8").valueOf();
+export const STYLE_CSS = "" || fs.readFileSync(path.join(__dirname, "..", "/html/style.css"), "utf8").valueOf();
+export const HTTPS_PORT = 0 || 443;
+export const HTTP_PORT = 0 || 80;
 //# sourceMappingURL=constants.js.map

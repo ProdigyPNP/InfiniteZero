@@ -1,7 +1,10 @@
 /** File System */
-import * as fs from "fs";
+import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 
+/** Fill for commonerjs */
+export const __dirname : string = path.resolve(fileURLToPath(import.meta.url), "..")
 
 
 /*-----------------------------------------------*

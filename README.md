@@ -14,3 +14,15 @@
 <br>
 
 <p>The main objective of Project Infinite Zero was <b>COMPLETE</b> as of July 21, 2022.</p>
+
+
+## Build InfiniteZero
+```shell
+pnpm install
+pnpm build
+```
+
+## Run InfiniteZero
+```shell
+pnpm start
+```

@@ -3,9 +3,9 @@
   "version": "3.0.1",
   "description": "Infinite Prodigy hacks, even on day Zero.",
   "main": "dist/index.js",
+  "type": "module",
   "scripts": {
-    "build": "echo \"Please use prestart instead.\" && npm run prestart",
-    "prestart": "npx tsc",
+    "build": "tsc",
     "start": "node dist"
   },
   "author": "ProdigyPNP",

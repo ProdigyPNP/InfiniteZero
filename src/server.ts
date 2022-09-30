@@ -3,10 +3,10 @@ import express from "express";
 import https from "https";
 import http from "http";
 import cors from "cors";
-import { getURL } from "./loadBalancer/loadBalancer";
-import { Analytics } from "./analytics";
-import { VERSION, HTTPS, HTTPS_KEY_PATH, HTTPS_CHAIN_PATH, INDEX_HTML, STYLE_CSS, HTTP_PORT, HTTPS_PORT } from "./constants";
-import { rLimit } from "./rateLimiter";
+import { getURL } from "./loadBalancer/loadBalancer.js";
+import { Analytics } from "./analytics.js";
+import { VERSION, HTTPS, HTTPS_KEY_PATH, HTTPS_CHAIN_PATH, INDEX_HTML, STYLE_CSS, HTTP_PORT, HTTPS_PORT } from "./constants.js";
+import { rLimit } from "./rateLimiter.js";
 
 export function log (content : string) : boolean {
     try {

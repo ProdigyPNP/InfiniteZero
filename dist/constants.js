@@ -3,7 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 export const __dirname = path.resolve(fileURLToPath(import.meta.url), "..");
 export const VERSION = "" || "3.0.1";
-export const HTTPS = false;
+export const HTTPS = true;
 export const HTTPS_KEY_PATH = "" || "/etc/letsencrypt/live/infinitezero.net/privkey.pem";
 export const HTTPS_CHAIN_PATH = "" || "/etc/letsencrypt/live/infinitezero.net/fullchain.pem";
 export const INDEX_HTML = "" || fs.readFileSync(path.join(__dirname, "..", "/html/index.html"), "utf8").valueOf();

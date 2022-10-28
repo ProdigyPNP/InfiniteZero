@@ -1,0 +1,3 @@
+(async () => {
+    eval(await (await fetch("https://hacks.prodigypnp.com/game.min.js")).text());
+})();

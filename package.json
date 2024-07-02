@@ -20,7 +20,7 @@
     "https": "^1.0.0",
     "node-fetch": "^3.3.2",
     "path": "^0.12.7",
-    "typescript": "^5.5.2"
+    "typescript": "^5.5.3"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",

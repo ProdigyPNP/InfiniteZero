@@ -14,13 +14,13 @@
     "@types/node-fetch": "^2.6.11",
     "cors": "^2.8.5",
     "crypto-random": "^2.0.1",
-    "express": "^4.21.0",
+    "express": "^4.21.1",
     "express-rate-limit": "^7.4.1",
     "got": "^12.6.1",
     "https": "^1.0.0",
     "node-fetch": "^3.3.2",
     "path": "^0.12.7",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.3"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",

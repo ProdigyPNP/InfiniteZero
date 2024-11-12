@@ -11,7 +11,7 @@
   "author": "ProdigyPNP",
   "license": "MPL-2.0",
   "dependencies": {
-    "@types/node-fetch": "^2.6.11",
+    "@types/node-fetch": "^2.6.12",
     "cors": "^2.8.5",
     "crypto-random": "^2.0.1",
     "express": "^4.21.1",
